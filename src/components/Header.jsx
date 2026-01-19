@@ -6,7 +6,7 @@ function Header() {
       <div className="container">
         <nav className="nav">
           <div className="nav-logo">
-            <img src="/logo.png" alt="Mozaic" className="logo-img" />
+            <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Mozaic" className="logo-img" />
             <span className="logo-text">Mozaic</span>
           </div>
           <ul className="nav-links">
