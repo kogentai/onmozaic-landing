@@ -34,6 +34,10 @@ jobs:
       - name: Build
         run: npm run build
       
+      - name: Remove CNAME for subpath deployment
+        run: rm -f dist/CNAME
+        continue-on-error: true
+      
       - name: Setup Pages
         uses: actions/configure-pages@v4
       
