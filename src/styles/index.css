@@ -1,0 +1,97 @@
+@import './design-system.css';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Utility Classes */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-6);
+}
+
+.section {
+  padding: var(--spacing-20) 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Button Styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-3) var(--spacing-6);
+  border-radius: var(--radius-lg);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base);
+  text-decoration: none;
+  border: 1px solid var(--color-border-secondary);
+  background-color: var(--color-button-bg);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.btn:hover {
+  background-color: var(--color-button-hover);
+  border-color: var(--color-text-primary);
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background-color: var(--color-accent-blue);
+  border-color: var(--color-accent-blue);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent-blue-dark);
+  border-color: var(--color-accent-blue-dark);
+}
+
+/* Card Styles */
+.card {
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-6);
+  transition: all var(--transition-normal);
+}
+
+.card:hover {
+  border-color: var(--color-border-secondary);
+  box-shadow: var(--shadow-glow);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--spacing-4);
+  }
+  
+  .section {
+    padding: var(--spacing-12) 0;
+  }
+}
