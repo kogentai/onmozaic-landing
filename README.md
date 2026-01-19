@@ -86,14 +86,19 @@ The built files will be in the `dist/` directory.
 
 2. **Custom Domain Configuration**:
    - The `public/CNAME` file is already configured for `onmozaic.com`
-   - In your domain registrar, add a CNAME record:
-     - Name: `@` (or `www` if you want www.onmozaic.com)
-     - Value: `your-username.github.io`
-   - Or add A records pointing to GitHub Pages IPs:
-     - `185.199.108.153`
-     - `185.199.109.153`
-     - `185.199.110.153`
-     - `185.199.111.153`
+   - In your domain registrar (GoDaddy), configure DNS records:
+     
+     **For Root Domain (@):**
+     - Delete or edit the existing A record pointing to "WebsiteBuilder Site"
+     - Add FOUR A records with the following:
+       - Type: A, Name: @, Data: `185.199.108.153`, TTL: 1 Hour
+       - Type: A, Name: @, Data: `185.199.109.153`, TTL: 1 Hour
+       - Type: A, Name: @, Data: `185.199.110.153`, TTL: 1 Hour
+       - Type: A, Name: @, Data: `185.199.111.153`, TTL: 1 Hour
+     
+     **For www Subdomain:**
+     - Edit the existing CNAME record for "www"
+     - Change Data from `onmozaic.com.` to `kogentai.github.io.`
 
 3. **Automatic Deployment**:
    - Push to the `main` branch
