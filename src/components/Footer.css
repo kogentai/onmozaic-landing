@@ -1,7 +1,17 @@
 .footer {
   background-color: var(--color-bg-secondary);
   border-top: 1px solid var(--color-border-primary);
-  padding: var(--spacing-16) 0 var(--spacing-8);
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.footer .container {
+  padding: var(--spacing-16) var(--spacing-6) var(--spacing-8);
 }
 
 .footer-content {
@@ -161,6 +171,10 @@
 }
 
 @media (max-width: 768px) {
+  .footer {
+    min-height: auto;
+  }
+  
   .footer-content {
     grid-template-columns: 1fr;
   }

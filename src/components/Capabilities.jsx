@@ -3,7 +3,7 @@ import './Capabilities.css'
 function Capabilities() {
   const capabilities = [
     {
-      title: 'Production-Grade Modeling',
+      title: 'Expert Grade Modeling',
       description: 'Generates multi-layer dbt projects (staging, intermediate, marts) complete with comprehensive data quality tests and documentation.'
     },
     {
