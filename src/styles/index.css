@@ -40,6 +40,12 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  scroll-margin-top: 80px;
+}
+
+section[id],
+footer[id] {
+  scroll-margin-top: 80px;
 }
 
 .text-center {
@@ -106,5 +112,10 @@ body {
   .section {
     padding: var(--spacing-12) 0;
     min-height: auto;
+  }
+  
+  section[id],
+  footer[id] {
+    scroll-margin-top: 70px;
   }
 }

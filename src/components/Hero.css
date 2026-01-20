@@ -7,6 +7,7 @@
   background: linear-gradient(180deg, var(--color-bg-primary) 0%, var(--color-bg-secondary) 100%);
   scroll-snap-align: start;
   scroll-snap-stop: always;
+  scroll-margin-top: 80px;
 }
 
 .hero-content {
@@ -103,6 +104,7 @@
     padding-top: 100px;
     padding-bottom: var(--spacing-12);
     min-height: auto;
+    scroll-margin-top: 70px;
   }
   
   .hero-title {
