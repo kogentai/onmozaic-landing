@@ -6,7 +6,7 @@ function FinalCTA() {
       <div className="container">
         <div className="final-cta-content">
           <h2 className="section-title">
-            Stop compromising between speed and security.
+            Don't Compromise Between Speed and Security.
           </h2>
           <p className="section-subtitle">
             See how forward-thinking enterprises use Mozaic to increase engineering throughput by 40% while hardening their governance posture.

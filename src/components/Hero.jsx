@@ -6,7 +6,7 @@ function Hero() {
       <div className="container">
         <div className="hero-content">
           <h1 className="hero-title">
-          Agentic Healthcare data management
+          Agentic Healthcare Data Management
             
           </h1>
 
