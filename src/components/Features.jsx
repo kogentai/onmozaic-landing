@@ -44,7 +44,7 @@ Trust Loop delivers autonomy without a loss of control while building fast and c
             </div>
             <div className="feature-card card">
               <div className="feature-icon">
-                <div className="icon-circle">🔍</div>
+                <div className="icon-circle">🛡️</div>
               </div>
               <h3 className="feature-title">Impact Analysis</h3>
               <p className="feature-description">
