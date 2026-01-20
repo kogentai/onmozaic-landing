@@ -10,7 +10,7 @@ function Footer() {
               <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Mozaic" className="footer-logo-img" />
               <span className="footer-logo-text">Mozaic</span>
             </div>
-            <p className="footer-tagline">The Trusted Data Engineer</p>
+            <p className="footer-tagline">Trusted Agent Putting Data Pieces Together</p>
           </div>
           
           <div className="footer-section footer-connect">

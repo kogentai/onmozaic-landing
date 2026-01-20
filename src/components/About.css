@@ -46,6 +46,13 @@
   color: var(--color-text-primary);
 }
 
+.value-prop-intro {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-4);
+}
+
 .value-prop-list {
   list-style: none;
   padding: 0;

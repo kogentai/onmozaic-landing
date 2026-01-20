@@ -1,46 +1,60 @@
 import './Features.css'
 
 function Features() {
-  const features = [
-    {
-      icon: '🔒',
-      title: 'The Trust Loop',
-      description: 'Dry-run verification before any production change. Every deployment is backed by visible impact analysis and cost estimates—never risking hallucinated deletions or runaway costs.'
-    },
-    {
-      icon: '💰',
-      title: 'Cost & Quota Manager',
-      description: 'Pre-flight cost estimation and budget enforcement. Know query costs before they\'re incurred and enforce team-wide budgets with transparent financial control.'
-    },
-    {
-      icon: '🧠',
-      title: 'Organizational Memory',
-      description: 'Learns your company conventions, tech stack, and business logic. Mozaic knows your naming conventions, tech preferences, and generates production-ready code that fits seamlessly.'
-    }
-  ]
-
   return (
-    <section id="features" className="features section">
-      <div className="container">
-        <div className="features-header">
-          <h2 className="section-title">Simplify Complex Data Operations with AI</h2>
-          <p className="section-subtitle">
-            Leverage AI to automate repetitive tasks, gain deeper insights, and optimize workflows for unparalleled efficiency.
-          </p>
-        </div>
-        <div className="features-grid">
-          {features.map((feature, index) => (
-            <div key={index} className="feature-card card">
+    <>
+      <section id="trust-loop" className="features section">
+        <div className="container">
+          <div className="features-header">
+            <h2 className="section-title">
+            Data Engineering Agent for Healthcare
+            </h2>
+            <p className="section-subtitle">
+            Mozaic analyzes data based on user prompts and organizational context to generate execution plans, but a promotion to production requires human approval.
+            </p>
+            <p className="section-subtitle">
+            <br/>
+Non-technical Users without HIPAA clearance can work on sensitive data without any PHI/PII leakage, while giving teams a faster, safer path from request to execution.
+            </p>
+            <p className="section-subtitle">
+            <br/>
+Trust Loop delivers autonomy without a loss of control while building fast and cost effective paths to putting your data to work.
+            
+
+            </p>
+          </div>
+          <div className="features-grid">
+            <div className="feature-card card">
               <div className="feature-icon">
-                <div className="icon-circle">{feature.icon}</div>
+                <div className="icon-circle">🧠</div>
               </div>
-              <h3 className="feature-title">{feature.title}</h3>
-              <p className="feature-description">{feature.description}</p>
+              <h3 className="feature-title">Organizational Context</h3>
+              <p className="feature-description">
+                Mozaic builds organizational context into its planning process, including your specific architectural patterns, business logic definitions, and technology standards before planning any action.
+              </p>
             </div>
-          ))}
+            <div className="feature-card card">
+              <div className="feature-icon">
+                <div className="icon-circle">🔒</div>
+              </div>
+              <h3 className="feature-title">Dry-Run Simulation</h3>
+              <p className="feature-description">
+                Mozaic tests the data operations in an ephemeral, completely isolated sandbox using anonymized data. It verifies schema integrity, runs compliance checks, and ensures functional stability. 
+              </p>
+            </div>
+            <div className="feature-card card">
+              <div className="feature-icon">
+                <div className="icon-circle">🔍</div>
+              </div>
+              <h3 className="feature-title">Impact Analysis</h3>
+              <p className="feature-description">
+              No surprises. Mozaic explains what will change, what it might impact, and the expected cost. Still don't get it? Ask Mozaic to explain it in a way that makes sense to you.
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 }
 

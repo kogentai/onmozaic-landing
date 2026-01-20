@@ -1,0 +1,31 @@
+.final-cta {
+  background-color: var(--color-bg-primary);
+}
+
+.final-cta-content {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.final-cta-button {
+  margin: var(--spacing-8) 0 var(--spacing-4) 0;
+  display: flex;
+  justify-content: center;
+}
+
+.final-cta-subtext {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .final-cta-button {
+    margin: var(--spacing-6) 0 var(--spacing-4) 0;
+  }
+  
+  .btn-hero {
+    width: 100%;
+  }
+}
