@@ -7,7 +7,7 @@ function Problem() {
         <div className="problem-header">
           <h2 className="section-title">
           Leverage Domain Experts Without Turning them Into Engineers.
-          </h2>🎱
+          </h2>
         </div>
         <div className="problem-content">
           <p className="problem-text">
