@@ -6,7 +6,7 @@ function Hero() {
       <div className="container">
         <div className="hero-content">
           <h1 className="hero-title">
-          Agentic Healthcare Data Management
+          AI for healthcare data pipelines. Without breaking the bank or governance.
             
           </h1>
 
