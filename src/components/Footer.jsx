@@ -7,7 +7,7 @@ function Footer() {
         <div className="footer-content">
           <div className="footer-section footer-logo">
             <div className="footer-logo-container">
-              <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Mozaic" className="footer-logo-img" />
+              <img src="/logo.png" alt="Mozaic" className="footer-logo-img" />
               <span className="footer-logo-text">Mozaic</span>
             </div>
             <p className="footer-tagline">Trusted Agent Putting Data Pieces Together</p>

@@ -9,6 +9,8 @@ node_modules
 # Production
 /dist
 /build
+.next
+out
 
 # Misc
 .DS_Store

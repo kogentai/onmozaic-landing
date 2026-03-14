@@ -6,7 +6,7 @@ function Hero() {
       <div className="container">
         <div className="hero-content">
           <h1 className="hero-title">
-          AI for healthcare data pipelines. Without breaking the bank or governance.
+          AI for healthcare data pipelines. Without breaking the bank.
             
           </h1>
 
