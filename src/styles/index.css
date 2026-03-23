@@ -179,11 +179,20 @@ nav .container { display: flex; justify-content: space-between; align-items: cen
 .dim { color: var(--text-muted); }
 
 .cta { text-align: center; }
+.cta .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .cta::after { content: ''; position: absolute; bottom: -300px; left: 50%; transform: translateX(-50%); width: 800px; height: 600px; background: radial-gradient(circle, rgba(200, 164, 78, 0.08), transparent 60%); pointer-events: none; }
 .cta h2 { font-family: var(--font-display); font-size: clamp(2.25rem, 4vw, 3.25rem); font-weight: 700; color: var(--cream); line-height: 1.15; margin-bottom: 24px; }
 .cta .btn-gold { display: inline-flex; align-items: center; gap: 10px; padding: 18px 44px; background: var(--gold); color: var(--navy); font-size: 1rem; font-weight: 600; border: none; border-radius: 6px; text-decoration: none; transition: all 0.35s ease; }
 .cta .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 40px rgba(200, 164, 78, 0.3); }
 .cta-note { margin-top: 20px; font-size: 0.8rem; color: var(--text-muted); font-weight: 300; }
+.cta p,
+.cta-note {
+  text-align: center;
+}
 
 footer { padding: 48px 0; background: var(--navy); border-top: 1px solid rgba(200, 164, 78, 0.1); }
 footer .container { display: flex; justify-content: space-between; align-items: center; }
