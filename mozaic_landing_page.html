@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mozaic — Build. Fix. Enhance. Modernize.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --navy: #0B1221;
+  --navy-mid: #131D33;
+  --navy-light: #1A2744;
+  --slate: #2A3A5C;
+  --gold: #C8A44E;
+  --gold-light: #E4C97A;
+  --gold-dim: rgba(200,164,78,0.12);
+  --cream: #F5F0E8;
+  --cream-mid: #EDE6D8;
+  --warm-white: #FDFBF7;
+  --text-primary: #0B1221;
+  --text-secondary: #4A5568;
+  --text-muted: #8896AB;
+  --border-subtle: rgba(200,164,78,0.2);
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background: var(--warm-white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ====== UTILITY ====== */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+@media (max-width: 768px) { .container { padding: 0 24px; } }
+
+/* ====== MOSAIC GRAIN OVERLAY ====== */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ====== NAV ====== */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 20px 0;
+  transition: all 0.4s ease;
+  background: transparent;
+}
+nav.scrolled {
+  background: rgba(253,251,247,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 14px 0;
+}
+nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: 0.08em;
+  text-decoration: none;
+}
+.nav-logo span { color: var(--gold); }
+.nav-links { display: flex; align-items: center; gap: 36px; }
+.nav-links a {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 28px;
+  background: var(--navy);
+  color: var(--cream) !important;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+.nav-cta:hover { background: var(--slate); color: var(--cream) !important; }
+@media (max-width: 768px) {
+  .nav-links a:not(.nav-cta) { display: none; }
+}
+
+/* ====== HERO ====== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--warm-white);
+}
+
+/* Mosaic grid pattern background */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; right: -10%; bottom: 0;
+  width: 55%;
+  background:
+    linear-gradient(135deg, transparent 25%, var(--gold-dim) 25%, var(--gold-dim) 50%, transparent 50%, transparent 75%, var(--gold-dim) 75%),
+    linear-gradient(45deg, transparent 25%, rgba(11,18,33,0.03) 25%, rgba(11,18,33,0.03) 50%, transparent 50%, transparent 75%, rgba(11,18,33,0.03) 75%);
+  background-size: 60px 60px, 40px 40px;
+  mask-image: radial-gradient(ellipse 80% 80% at 60% 50%, black 20%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 60% 50%, black 20%, transparent 70%);
+  opacity: 0.7;
+}
+
+/* Gold accent line */
+.hero::after {
+  content: '';
+  position: absolute;
+  left: 40px;
+  top: 25%;
+  bottom: 25%;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+  padding: 120px 0;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.2s;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 5.5vw, 4.25rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--navy);
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.4s;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+.hero-sub {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  font-weight: 300;
+  margin-bottom: 44px;
+  max-width: 560px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.6s;
+}
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.8s;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  background: var(--navy);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  text-decoration: none;
+}
+.btn-primary:hover {
+  background: var(--slate);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(11,18,33,0.2);
+}
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  background: transparent;
+  color: var(--navy);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border: 1.5px solid var(--border-subtle);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  text-decoration: none;
+}
+.btn-secondary:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-2px);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ====== SOCIAL PROOF BAR ====== */
+.proof-bar {
+  border-top: 1px solid rgba(200,164,78,0.15);
+  border-bottom: 1px solid rgba(200,164,78,0.15);
+  padding: 36px 0;
+  background: var(--cream);
+}
+.proof-bar .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+.proof-stat {
+  text-align: center;
+}
+.proof-stat .number {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1;
+}
+.proof-stat .label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+  letter-spacing: 0.03em;
+}
+.proof-divider {
+  width: 1px;
+  height: 40px;
+  background: var(--border-subtle);
+}
+@media (max-width: 768px) {
+  .proof-divider { display: none; }
+  .proof-bar .container { gap: 32px; }
+}
+
+/* ====== PROBLEM SECTION ====== */
+.problem {
+  padding: 120px 0;
+  background: var(--navy);
+  color: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+.problem::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+.problem::after {
+  content: '';
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(200,164,78,0.06), transparent 70%);
+  pointer-events: none;
+}
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+.problem h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 600;
+  line-height: 1.2;
+  max-width: 700px;
+  margin-bottom: 60px;
+}
+.problem h2 em { font-style: italic; color: var(--gold-light); }
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+@media (max-width: 768px) { .problem-grid { grid-template-columns: 1fr; } }
+.problem-card {
+  padding: 40px 36px;
+  background: var(--navy-mid);
+  position: relative;
+  transition: background 0.4s;
+}
+.problem-card:hover { background: var(--navy-light); }
+.problem-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 36px;
+  width: 24px; height: 2px;
+  background: var(--gold);
+  transition: width 0.4s;
+}
+.problem-card:hover::before { width: 48px; }
+.problem-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 20px 0 14px;
+}
+.problem-card p {
+  font-size: 0.925rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+  font-weight: 300;
+}
+.problem-card .stat {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--gold);
+  margin-top: 16px;
+  letter-spacing: 0.05em;
+}
+
+/* ====== HOW IT WORKS ====== */
+.how {
+  padding: 120px 0;
+  background: var(--warm-white);
+  position: relative;
+}
+.how h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--navy);
+  max-width: 600px;
+  margin-bottom: 64px;
+}
+.how h2 em { font-style: italic; color: var(--gold); }
+.how-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+@media (max-width: 900px) { .how-steps { grid-template-columns: repeat(2,1fr); gap: 24px; } }
+@media (max-width: 560px) { .how-steps { grid-template-columns: 1fr; } }
+.how-step {
+  padding: 0 32px;
+  position: relative;
+}
+.how-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 28px; right: 0;
+  width: 1px; height: 60px;
+  background: var(--border-subtle);
+}
+@media (max-width: 900px) { .how-step::after { display: none !important; } }
+.step-num {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--gold-dim);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.how-step h3 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+.how-step p {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+
+/* ====== FOUR MODES ====== */
+.modes {
+  padding: 120px 0;
+  background: var(--cream);
+  position: relative;
+}
+.modes::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border-subtle), transparent);
+}
+.modes h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--navy);
+  margin-bottom: 16px;
+}
+.modes h2 em { font-style: italic; color: var(--gold); }
+.modes-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+  max-width: 600px;
+  margin-bottom: 64px;
+  line-height: 1.6;
+}
+.modes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  background: var(--border-subtle);
+  border: 1px solid var(--border-subtle);
+}
+@media (max-width: 768px) { .modes-grid { grid-template-columns: 1fr; } }
+.mode-card {
+  padding: 48px 44px;
+  background: var(--warm-white);
+  position: relative;
+  transition: all 0.4s;
+}
+.mode-card:hover {
+  background: white;
+  z-index: 2;
+  box-shadow: 0 0 0 1px var(--gold), 0 16px 48px rgba(11,18,33,0.08);
+}
+.mode-icon {
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+  border: 1.5px solid var(--border-subtle);
+  border-radius: 8px;
+  transition: border-color 0.4s;
+}
+.mode-card:hover .mode-icon { border-color: var(--gold); }
+.mode-icon svg { width: 22px; height: 22px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+.mode-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+.mode-card p {
+  font-size: 0.925rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+.mode-tag {
+  display: inline-block;
+  margin-top: 16px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 4px 10px;
+  border: 1px solid var(--gold-dim);
+  border-radius: 3px;
+}
+
+/* ====== ARCHITECTURE ====== */
+.arch {
+  padding: 120px 0;
+  background: var(--navy);
+  color: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+.arch::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+.arch h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.arch h2 em { font-style: italic; color: var(--gold-light); }
+.arch-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  font-weight: 300;
+  max-width: 560px;
+  margin-bottom: 64px;
+  line-height: 1.6;
+}
+.arch-stack {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+@media (max-width: 768px) { .arch-stack { grid-template-columns: 1fr; } }
+.arch-layer {
+  padding: 40px 36px;
+  background: var(--navy-mid);
+  border-bottom: 2px solid transparent;
+  transition: all 0.4s;
+}
+.arch-layer:hover {
+  background: var(--navy-light);
+  border-bottom-color: var(--gold);
+}
+.arch-layer h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.arch-layer p {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  font-weight: 300;
+}
+.arch-layer .tech {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--gold);
+  margin-top: 14px;
+  letter-spacing: 0.05em;
+}
+
+/* ====== DIFFERENTIATOR ====== */
+.diff {
+  padding: 120px 0;
+  background: var(--warm-white);
+  position: relative;
+}
+.diff h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--navy);
+  text-align: center;
+  margin-bottom: 64px;
+}
+.diff h2 em { font-style: italic; color: var(--gold); }
+.diff-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.diff-table thead th {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--navy);
+  padding: 16px 20px;
+  text-align: left;
+  border-bottom: 2px solid var(--navy);
+}
+.diff-table thead th:first-child { color: var(--text-muted); font-family: var(--font-body); font-weight: 400; }
+.diff-table tbody td {
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(200,164,78,0.12);
+  color: var(--text-secondary);
+  font-weight: 300;
+  vertical-align: top;
+}
+.diff-table tbody tr:hover { background: var(--cream); }
+.diff-table tbody td:nth-child(2) { color: var(--navy); font-weight: 500; }
+.check { color: var(--gold); font-weight: 600; }
+.dim { color: var(--text-muted); }
+@media (max-width: 768px) {
+  .diff-table { font-size: 0.8rem; }
+  .diff-table thead th, .diff-table tbody td { padding: 10px 12px; }
+}
+
+/* ====== CTA ====== */
+.cta {
+  padding: 120px 0;
+  background: var(--navy);
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+.cta::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+.cta::after {
+  content: '';
+  position: absolute;
+  bottom: -300px; left: 50%; transform: translateX(-50%);
+  width: 800px; height: 600px;
+  background: radial-gradient(circle, rgba(200,164,78,0.08), transparent 60%);
+  pointer-events: none;
+}
+.cta h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 4vw, 3.25rem);
+  font-weight: 700;
+  color: var(--cream);
+  line-height: 1.15;
+  margin-bottom: 24px;
+  position: relative;
+}
+.cta h2 em { font-style: italic; color: var(--gold-light); }
+.cta p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  font-weight: 300;
+  max-width: 520px;
+  margin: 0 auto 44px;
+  line-height: 1.6;
+}
+.cta .btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 44px;
+  background: var(--gold);
+  color: var(--navy);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  text-decoration: none;
+  position: relative;
+}
+.cta .btn-gold:hover {
+  background: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px rgba(200,164,78,0.3);
+}
+.cta-note {
+  margin-top: 20px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+/* ====== FOOTER ====== */
+footer {
+  padding: 48px 0;
+  background: var(--navy);
+  border-top: 1px solid rgba(200,164,78,0.1);
+}
+footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+footer .footer-brand {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--cream);
+  letter-spacing: 0.06em;
+}
+footer .footer-brand span { color: var(--gold); }
+footer .footer-links {
+  display: flex;
+  gap: 28px;
+}
+footer .footer-links a {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+footer .footer-links a:hover { color: var(--gold); }
+footer .footer-copy {
+  font-size: 0.75rem;
+  color: var(--slate);
+}
+@media (max-width: 768px) {
+  footer .container { flex-direction: column; gap: 20px; text-align: center; }
+}
+
+/* ====== SCROLL ANIMATIONS ====== */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="container">
+    <a href="#" class="nav-logo">MOZAIC<span>.</span></a>
+    <div class="nav-links">
+      <a href="#how">How It Works</a>
+      <a href="#modes">Capabilities</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#cta" class="nav-cta">Request Early Access →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Now accepting design partners</div>
+      <h1>Build software from <em>intent,</em> not instructions.</h1>
+      <p class="hero-sub">Mozaic is the agentic SDLC platform where enterprise teams define requirements, fix bugs, deliver enhancements, and inject AI into legacy systems — without writing code.</p>
+      <div class="hero-actions">
+        <a href="#cta" class="btn-primary">Request Early Access →</a>
+        <a href="#how" class="btn-secondary">See How It Works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF BAR -->
+<section class="proof-bar">
+  <div class="container">
+    <div class="proof-stat">
+      <div class="number">70%</div>
+      <div class="label">Faster requirement-to-code</div>
+    </div>
+    <div class="proof-divider"></div>
+    <div class="proof-stat">
+      <div class="number">&lt;5%</div>
+      <div class="label">Regression rate on changes</div>
+    </div>
+    <div class="proof-divider"></div>
+    <div class="proof-stat">
+      <div class="number">90%+</div>
+      <div class="label">First-pass code fidelity</div>
+    </div>
+    <div class="proof-divider"></div>
+    <div class="proof-stat">
+      <div class="number">0</div>
+      <div class="label">Lines of code to write</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="container">
+    <div class="section-label reveal">The problem</div>
+    <h2 class="reveal">Your requirements lose fidelity at <em>every handoff.</em> Your maintenance burden <em>never stops growing.</em></h2>
+    <div class="problem-grid">
+      <div class="problem-card reveal">
+        <h3>Intent evaporates</h3>
+        <p>PRDs lose meaning as they pass through Jira, Slack, design tools, and code reviews. What gets built is a shadow of what was envisioned.</p>
+        <div class="stat">~40% of intent lost per handoff</div>
+      </div>
+      <div class="problem-card reveal">
+        <h3>Maintenance consumes everything</h3>
+        <p>Enterprise teams spend 60–80% of engineering capacity on bugs and enhancements, with tooling designed exclusively for greenfield work.</p>
+        <div class="stat">60–80% of eng budget on maintenance</div>
+      </div>
+      <div class="problem-card reveal">
+        <h3>Legacy systems sit untouched</h3>
+        <p>Massive codebases desperately need AI capabilities but can't justify a rewrite. There is no safe, incremental path to modernization.</p>
+        <div class="stat">$2.5T global legacy modernization debt</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="container">
+    <div class="section-label reveal">How it works</div>
+    <h2 class="reveal">Write what you mean.<br>Mozaic builds <em>what you wrote.</em></h2>
+    <div class="how-steps">
+      <div class="how-step reveal">
+        <div class="step-num">01</div>
+        <h3>Author</h3>
+        <p>Write PRDs, bug reports, and enhancement requests in a purpose-built markdown editor with guided templates and real-time completeness scoring.</p>
+      </div>
+      <div class="how-step reveal">
+        <div class="step-num">02</div>
+        <h3>Understand</h3>
+        <p>Behind the scenes, Mozaic builds an intelligent understanding of your entire system — entities, rules, relationships — without you lifting a finger.</p>
+      </div>
+      <div class="how-step reveal">
+        <div class="step-num">03</div>
+        <h3>Generate</h3>
+        <p>Claude generates production-quality code in isolated E2B sandboxes. Every operation runs in its own secure microVM with hardware-level isolation.</p>
+      </div>
+      <div class="how-step reveal">
+        <div class="step-num">04</div>
+        <h3>Validate</h3>
+        <p>Acceptance criteria are tested automatically. Impact analysis flags regressions before they reach production. Review the output, not the code.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUR MODES -->
+<section class="modes" id="modes">
+  <div class="container">
+    <div class="section-label reveal">Capabilities</div>
+    <h2 class="reveal">One platform. <em>Four workflows.</em></h2>
+    <p class="modes-subtitle reveal">Most tools optimize for building new things. Mozaic covers the entire lifecycle — because enterprise teams spend most of their time on everything else.</p>
+    <div class="modes-grid reveal">
+      <div class="mode-card">
+        <div class="mode-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Build New Products</h3>
+        <p>Author PRDs in a guided editor. Claude generates data models, APIs, and UI components from your structured requirements. Iterate by editing the document, not the code.</p>
+        <div class="mode-tag">Greenfield Development</div>
+      </div>
+      <div class="mode-card">
+        <div class="mode-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+        </div>
+        <h3>Fix Bugs Faster</h3>
+        <p>File a structured bug report. The platform maps it against the system's intelligence layer to identify root causes, generate fixes, and run regression tests automatically.</p>
+        <div class="mode-tag">Bug Resolution</div>
+      </div>
+      <div class="mode-card">
+        <div class="mode-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 20V10M6 20V4M18 20v-6"/></svg>
+        </div>
+        <h3>Deliver Enhancements</h3>
+        <p>Scope changes with automatic impact analysis across the entire system. See every affected component and business rule before a single line changes. Zero-regression validation built in.</p>
+        <div class="mode-tag">Enhancement Delivery</div>
+      </div>
+      <div class="mode-card">
+        <div class="mode-icon">
+          <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h3>Inject AI into Legacy Systems</h3>
+        <p>Add intelligent search, classification, predictive analytics, or NLP interfaces to existing systems — without rewriting a single line of legacy code. Safe. Incremental. Non-invasive.</p>
+        <div class="mode-tag">Legacy AI Injection</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section class="arch" id="architecture">
+  <div class="container">
+    <div class="section-label reveal">Architecture</div>
+    <h2 class="reveal">Enterprise security. <em>Invisible intelligence.</em></h2>
+    <p class="arch-subtitle reveal">Every code operation runs in its own isolated microVM. The intelligence layer works behind the scenes. You never see the complexity — only the results.</p>
+    <div class="arch-stack reveal">
+      <div class="arch-layer">
+        <h3>Mozaic Editor</h3>
+        <p>Purpose-built markdown editor with document templates, slash commands, ontology-aware autocomplete, and real-time completeness scoring.</p>
+        <div class="tech">Tiptap / ProseMirror</div>
+      </div>
+      <div class="arch-layer">
+        <h3>Intelligence Engine</h3>
+        <p>Silently builds and maintains a structured world model of your system. Powers impact analysis, regression detection, and smart suggestions — automatically.</p>
+        <div class="tech">Graph Database / NLP Pipeline</div>
+      </div>
+      <div class="arch-layer">
+        <h3>Claude + E2B Sandbox</h3>
+        <p>Code generation by Claude (Anthropic). Execution in isolated E2B microVMs powered by Firecracker. Hardware-level isolation. Zero cross-contamination.</p>
+        <div class="tech">Claude API / E2B Firecracker MicroVMs</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENTIATOR -->
+<section class="diff" id="compare">
+  <div class="container">
+    <div class="section-label reveal" style="text-align:center;">How Mozaic compares</div>
+    <h2 class="reveal">Not another <em>AI coding tool.</em></h2>
+    <div class="reveal" style="overflow-x:auto;">
+      <table class="diff-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Mozaic</th>
+            <th>8090 / DevPlan</th>
+            <th>Copilot / Cursor</th>
+            <th>Jira + Notion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Structured requirements editor</td>
+            <td class="check">Purpose-built</td>
+            <td>Agent-guided</td>
+            <td class="dim">None</td>
+            <td>Unstructured</td>
+          </tr>
+          <tr>
+            <td>System intelligence</td>
+            <td class="check">Invisible, automatic</td>
+            <td>Visible knowledge graph</td>
+            <td class="dim">Codebase only</td>
+            <td class="dim">None</td>
+          </tr>
+          <tr>
+            <td>Code generation + execution</td>
+            <td class="check">Integrated (Claude + E2B)</td>
+            <td>External agents</td>
+            <td>IDE-level assist</td>
+            <td class="dim">None</td>
+          </tr>
+          <tr>
+            <td>Bug resolution workflow</td>
+            <td class="check">First-class</td>
+            <td class="dim">Not dedicated</td>
+            <td>Developer-driven</td>
+            <td>Ticket-based</td>
+          </tr>
+          <tr>
+            <td>Legacy AI injection</td>
+            <td class="check">Dedicated workflow</td>
+            <td class="dim">Rewrite-focused</td>
+            <td class="dim">None</td>
+            <td class="dim">None</td>
+          </tr>
+          <tr>
+            <td>Impact analysis</td>
+            <td class="check">Automatic</td>
+            <td>Via knowledge graph</td>
+            <td class="dim">None</td>
+            <td>Manual links</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="cta">
+  <div class="container">
+    <h2 class="reveal">Ready to build software<br>from <em>intent?</em></h2>
+    <p class="reveal">We're accepting 10 design partners for our initial program. Enterprise PM and engineering teams with complex products and legacy systems preferred.</p>
+    <a href="mailto:founders@mozaic.dev" class="btn-gold reveal">Request Early Access →</a>
+    <div class="cta-note reveal">No commitment required. We'll schedule a 30-minute conversation to see if there's a fit.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-brand">MOZAIC<span>.</span></div>
+    <div class="footer-links">
+      <a href="#">About</a>
+      <a href="#">Blog</a>
+      <a href="#">Careers</a>
+      <a href="mailto:founders@mozaic.dev">Contact</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Mozaic. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

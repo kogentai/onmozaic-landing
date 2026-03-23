@@ -1,12 +1,13 @@
 import '../styles/index.css'
 
 export const metadata = {
-  title: 'Mozaic - Data Engineering Agent for Healthcare',
+  title: 'Mozaic — Build. Fix. Enhance. Modernize.',
   description:
-    'Mozaic - Data Engineering Agent for Healthcare. Data Management and Governance for Healthcare Enterprise.',
+    'Mozaic is the agentic SDLC platform where enterprise teams define requirements, fix bugs, deliver enhancements, and inject AI into legacy systems — without writing code.',
   openGraph: {
-    title: 'Mozaic - Data Engineering Agent for Healthcare',
-    description: 'Data Management and Governance for Healthcare Enterprise.',
+    title: 'Mozaic — Build. Fix. Enhance. Modernize.',
+    description:
+      'Mozaic is the agentic SDLC platform where enterprise teams define requirements, fix bugs, deliver enhancements, and inject AI into legacy systems — without writing code.',
     type: 'website',
   },
   icons: {
