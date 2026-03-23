@@ -7,8 +7,7 @@ export default function Page() {
       <nav id="nav">
         <div className="container">
           <a href="#" className="nav-logo">
-            <img src="/logo.png" alt="Mozaic logo" className="brand-logo" />
-            <span>MOZAIC</span><span>.</span>
+            <img src="/mozaic-wordmark.png" alt="Mozaic" className="top-wordmark" />
           </a>
           <div className="nav-links">
             <a href="#how">How It Works</a>
@@ -154,8 +153,7 @@ export default function Page() {
       <footer>
         <div className="container">
           <div className="footer-brand">
-            <img src="/logo.png" alt="Mozaic logo" className="brand-logo footer-logo" />
-            <span>MOZAIC</span><span>.</span>
+            <img src="/mozaic-wordmark.png" alt="Mozaic wordmark" className="footer-wordmark" />
           </div>
           <div className="footer-links">
             <a href="#">About</a>

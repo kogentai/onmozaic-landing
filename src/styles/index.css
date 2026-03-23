@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -58,9 +58,18 @@ nav.scrolled {
   padding: 14px 0;
 }
 nav .container { display: flex; justify-content: space-between; align-items: center; }
-.nav-logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--navy); letter-spacing: 0.08em; text-decoration: none; }
-.nav-logo { display: inline-flex; align-items: center; gap: 10px; }
-.nav-logo span { color: var(--gold); }
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 500;
+  color: #0f1420;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
 .nav-links { display: flex; align-items: center; gap: 36px; }
 .nav-links a { font-size: 0.875rem; font-weight: 500; color: var(--text-secondary); text-decoration: none; letter-spacing: 0.02em; transition: color 0.3s; }
 .nav-links a:hover { color: var(--gold); }
@@ -201,14 +210,38 @@ footer .footer-copy { font-size: 0.75rem; color: var(--slate); }
   height: 24px;
 }
 
+.footer-wordmark {
+  width: 132px;
+  height: auto;
+  display: block;
+  filter: brightness(0) saturate(100%) invert(74%) sepia(32%) saturate(734%) hue-rotate(7deg) brightness(91%) contrast(89%);
+}
+
+.wordmark {
+  font-family: 'Cormorant SC', var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.014em;
+  font-weight: 600;
+  font-variant-ligatures: none;
+}
+
+.top-wordmark {
+  width: 220px;
+  height: auto;
+  display: block;
+}
+
 @media (max-width: 900px) {
   nav .container {
     padding-left: 24px;
     padding-right: 24px;
   }
   .nav-logo {
-    font-size: 1.35rem;
-    gap: 8px;
+    font-size: 1.65rem;
+    letter-spacing: 0.008em;
+  }
+  .top-wordmark {
+    width: 190px;
   }
   .brand-logo {
     width: 24px;
@@ -235,18 +268,26 @@ footer .footer-copy { font-size: 0.75rem; color: var(--slate); }
 }
 @media (max-width: 768px) {
   nav {
-    padding: 14px 0;
+    padding: 18px 0 10px;
+  }
+  nav .container {
+    justify-content: center;
+  }
+  .nav-links {
+    display: none;
   }
   .nav-logo {
-    font-size: 1.2rem;
+    font-size: 2.3rem;
+    letter-spacing: 0.006em;
+    color: #0f1420;
+    font-weight: 600;
   }
-  .nav-cta {
-    padding: 8px 12px;
-    font-size: 0.75rem;
+  .top-wordmark {
+    width: 200px;
   }
   .hero {
     min-height: auto;
-    padding-top: 72px;
+    padding-top: 22px;
   }
   .hero::before {
     width: 65%;
@@ -259,21 +300,30 @@ footer .footer-copy { font-size: 0.75rem; color: var(--slate); }
     bottom: 10%;
   }
   .hero-content {
-    padding: 72px 0 52px;
+    padding: 56px 0 44px;
+    margin: 0 auto;
+    text-align: center;
   }
   .hero-eyebrow {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     font-size: 0.68rem;
     letter-spacing: 0.12em;
+    justify-content: center;
+  }
+  .hero-eyebrow::before {
+    display: none;
   }
   .hero h1 {
-    font-size: clamp(2rem, 10vw, 2.9rem);
+    font-size: clamp(2.9rem, 11vw, 4rem);
+    line-height: 1.06;
     margin-bottom: 18px;
   }
   .hero-sub {
-    font-size: 1rem;
+    font-size: 0.96rem;
     margin-bottom: 28px;
     max-width: 100%;
+    line-height: 1.5;
+    color: #1b2029;
   }
   .hero-actions {
     gap: 10px;
@@ -282,7 +332,18 @@ footer .footer-copy { font-size: 0.75rem; color: var(--slate); }
   .btn-secondary {
     width: 100%;
     justify-content: center;
-    padding: 14px 18px;
+    padding: 16px 18px;
+    border-radius: 999px;
+    font-size: 0.95rem;
+  }
+  .btn-primary {
+    background: #9d7b13;
+    color: #f5f0e8;
+  }
+  .btn-secondary {
+    border: 1.8px solid #a8892d;
+    color: #8f7422;
+    background: transparent;
   }
   .problem,
   .how,
@@ -312,14 +373,21 @@ footer .footer-copy { font-size: 0.75rem; color: var(--slate); }
   }
   .proof-bar .container {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 22px 16px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    align-items: start;
+  }
+  .proof-divider {
+    display: none;
   }
   .proof-stat .number {
-    font-size: 1.45rem;
+    font-size: 3rem;
+    line-height: 0.95;
   }
   .proof-stat .label {
-    font-size: 0.74rem;
+    font-size: 0.7rem;
+    line-height: 1.15;
+    margin-top: 10px;
   }
   .problem-grid, .modes-grid, .arch-stack { grid-template-columns: 1fr; }
   .diff-table { font-size: 0.8rem; }
@@ -335,14 +403,15 @@ footer .footer-copy { font-size: 0.75rem; color: var(--slate); }
     display: none;
   }
   .proof-bar .container {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px;
   }
   .nav-logo {
-    font-size: 1.06rem;
+    font-size: 2.05rem;
+    letter-spacing: 0.004em;
   }
-  .brand-logo {
-    width: 20px;
-    height: 20px;
+  .top-wordmark {
+    width: 175px;
   }
   .nav-cta {
     padding: 7px 10px;
@@ -351,9 +420,14 @@ footer .footer-copy { font-size: 0.75rem; color: var(--slate); }
   .diff-table {
     min-width: 700px;
   }
-  .footer-logo {
-    width: 20px;
-    height: 20px;
+  .footer-wordmark {
+    width: 112px;
+  }
+  .hero h1 {
+    font-size: clamp(2.4rem, 12vw, 3.2rem);
+  }
+  .proof-stat .number {
+    font-size: 2.5rem;
   }
   .how-steps { grid-template-columns: 1fr; }
 }
