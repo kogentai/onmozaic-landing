@@ -25,7 +25,7 @@ export default function Page() {
           <div className="hero-content">
             <div className="hero-eyebrow">Now accepting design partners</div>
             <h1>
-              Build solutions from <em>intent,</em> not code from instructions.
+              Build solutions from <em>intent,</em> not instructions.
             </h1>
             <p className="hero-sub">
               Mozaic is the agentic solution lifecycle platform where enterprise teams define requirements, fix bugs,
