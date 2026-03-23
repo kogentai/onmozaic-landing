@@ -14,7 +14,7 @@ export default function Page() {
             <a href="#how">How It Works</a>
             <a href="#modes">Capabilities</a>
             <a href="#architecture">Architecture</a>
-            <a href="#cta" className="nav-cta">
+            <a href="mailto:pratul@kogent.ai" className="nav-cta">
               Request Early Access →
             </a>
           </div>
@@ -33,7 +33,7 @@ export default function Page() {
               deliver enhancements, and inject AI into legacy systems — without writing code.
             </p>
             <div className="hero-actions">
-              <a href="#cta" className="btn-primary">
+              <a href="mailto:pratul@kogent.ai" className="btn-primary">
                 Request Early Access →
               </a>
               <a href="#how" className="btn-secondary">
@@ -146,7 +146,7 @@ export default function Page() {
         <div className="container">
           <h2 className="reveal">Ready to build software<br />from <em>intent?</em></h2>
           <p className="reveal">We&apos;re accepting 10 design partners for our initial program. Enterprise PM and engineering teams with complex products and legacy systems preferred.</p>
-          <a href="mailto:founders@mozaic.dev" className="btn-gold reveal">Request Early Access →</a>
+          <a href="mailto:pratul@kogent.ai" className="btn-gold reveal">Request Early Access →</a>
           <div className="cta-note reveal">No commitment required. We&apos;ll schedule a 30-minute conversation to see if there&apos;s a fit.</div>
         </div>
       </section>
