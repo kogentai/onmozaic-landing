@@ -161,7 +161,7 @@ export default function Page() {
             <a href="#">Careers</a>
             <a href="mailto:founders@mozaic.dev">Contact</a>
           </div>
-          <div className="footer-copy">© 2026 Mozaic. All rights reserved.</div>
+          <div className="footer-copy">© 2026 KogentAI. All rights reserved.</div>
         </div>
       </footer>
     </>
