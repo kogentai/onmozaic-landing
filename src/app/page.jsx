@@ -114,7 +114,7 @@ export default function Page() {
           <h2 className="reveal">Enterprise security. <em>Invisible intelligence.</em></h2>
           <p className="arch-subtitle reveal">Every code operation runs in its own isolated microVM. The intelligence layer works behind the scenes. You never see the complexity — only the results.</p>
           <div className="arch-stack reveal">
-            <div className="arch-layer"><h3>Mozaic Editor</h3><p>Purpose-built markdown editor with document templates, slash commands, ontology-aware autocomplete, and real-time completeness scoring.</p><div className="tech">Tiptap / ProseMirror</div></div>
+            <div className="arch-layer"><h3>Mozaic Editor</h3><p>Purpose-built markdown editor with document templates, slash commands, ontology-aware autocomplete, and real-time completeness scoring.</p><div className="tech">Markdown Editor/ AI-assisted</div></div>
             <div className="arch-layer"><h3>Intelligence Engine</h3><p>Silently builds and maintains a structured world model of your system. Powers impact analysis, regression detection, and smart suggestions — automatically.</p><div className="tech">Graph Database / NLP Pipeline</div></div>
             <div className="arch-layer"><h3>Claude + E2B Sandbox</h3><p>Code generation by Claude (Anthropic). Execution in isolated E2B microVMs powered by Firecracker. Hardware-level isolation. Zero cross-contamination.</p><div className="tech">Claude API / E2B Firecracker MicroVMs</div></div>
           </div>
